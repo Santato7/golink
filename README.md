@@ -1,3 +1,3 @@
 # GoLink
 
-Um encurtador de URLs.
+Um encurtador de URLs simples.
