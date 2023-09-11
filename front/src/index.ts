@@ -8,31 +8,24 @@ form.addEventListener("submit", (event) => {
 });
 
 async function shortenUrl(_url: string) {
-  const data = {
-    url: _url,
-  };
-
-  const requestOptions: RequestInit = {
+  fetch("/api/shortenUrl", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
-  };
-
-  // Faz a solicitação Fetch
-  fetch("/api/shortenUrl", requestOptions)
-    .then((response: Response) => {
+    body: JSON.stringify({ url: "aaaaaaaa" }),
+  })
+    .then((response) => {
       if (!response.ok) {
         throw new Error("Erro na solicitação: " + response.status);
       }
       return response.json(); // Converte a resposta em JSON
     })
-    .then((data: any) => {
+    .then((data) => {
       // Manipule os dados JSON aqui
       console.log(data);
     })
-    .catch((error: Error) => {
+    .catch((error) => {
       // Manipule erros aqui
       console.error("Erro na solicitação Fetch:", error);
     });
