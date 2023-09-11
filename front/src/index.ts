@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const form = document.getElementById("urlForm") as HTMLFormElement;
 
 form.addEventListener("submit", (event) => {
@@ -7,18 +5,35 @@ form.addEventListener("submit", (event) => {
   const { value } = form.url;
 
   shortenUrl(value);
-  alert(value);
 });
 
 async function shortenUrl(_url: string) {
-  axios
-    .post("/api/shortenUrl", {
-      url: _url,
+  const data = {
+    url: _url,
+  };
+
+  const requestOptions: RequestInit = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  // Faz a solicitação Fetch
+  fetch("/api/shortenUrl", requestOptions)
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error("Erro na solicitação: " + response.status);
+      }
+      return response.json(); // Converte a resposta em JSON
     })
-    .then(function (response) {
-      console.log(response);
+    .then((data: any) => {
+      // Manipule os dados JSON aqui
+      console.log(data);
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error: Error) => {
+      // Manipule erros aqui
+      console.error("Erro na solicitação Fetch:", error);
     });
 }
