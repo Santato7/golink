@@ -14,17 +14,18 @@ async function shortenUrl(_url: string) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ url: "aaaaaaaa" }),
+    body: JSON.stringify({ url: _url }),
   })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erro na solicitação: " + response.status);
       }
-      return response.json(); // Converte a resposta em JSON
+      // Não analise a resposta como JSON aqui
+      // return response.json();
     })
-    .then((data) => {
-      // Manipule os dados JSON aqui
-      console.log(data);
+    .then(() => {
+      // Manipule o sucesso aqui, pois a resposta não é um JSON
+      console.log("Solicitação bem-sucedida");
     })
     .catch((error) => {
       // Manipule erros aqui
