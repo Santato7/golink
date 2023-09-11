@@ -4,22 +4,11 @@ import shortenUrl from "./shortenUrl";
 
 var app = express();
 app.use(express.json());
+app.use(cors());
 
-const corsOptions = {
-  origin: "https://santato.dev", // Substitua pelo seu domínio
-};
-
-app.post(
-  "/shortenUrl",
-  cors(corsOptions),
-  function (req: express.Request, res: express.Response) {
-    shortenUrl(req, res);
-
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "POST");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-  }
-);
+app.post("/shortenUrl", function (req: express.Request, res: express.Response) {
+  shortenUrl(req, res);
+});
 
 if (!module.parent) {
   app.listen(3000);
