@@ -3,11 +3,10 @@ import express from "express";
 import shortenUrl from "./shortenUrl";
 
 var app = express();
+app.use(express.json());
 
 app.post("/shortenUrl", function (req: express.Request, res: express.Response) {
-  console.log(req);
-  res.status(200).send("ok");
-  // shortenUrl(req, res);
+  shortenUrl(req, res);
 });
 
 if (!module.parent) {
