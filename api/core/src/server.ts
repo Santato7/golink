@@ -1,33 +1,11 @@
 import express from "express";
 
+import shortenUrl from "./shortenUrl";
+
 var app = express();
 
-const users = [
-  {
-    id: 1,
-    name: "Lucas",
-  },
-  {
-    id: 2,
-    name: "Eric",
-  },
-  {
-    id: 3,
-    name: "Ana",
-  },
-];
-
-app.get("/", function (req: any, res: any) {
-  res.send("Hello!");
-});
-
-app.get("/users", function (req: any, res: any) {
-  res.send(users);
-});
-
-app.get("/users/:userId", function (req: any, res: any) {
-  const user = users.filter((user) => user.id == req.params.userId);
-  res.send(user);
+app.get("/shortenUrl", function (req: express.Request, res: express.Response) {
+  shortenUrl(req, res);
 });
 
 if (!module.parent) {
