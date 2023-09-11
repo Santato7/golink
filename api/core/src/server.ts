@@ -7,6 +7,10 @@ app.use(express.json());
 
 app.post("/shortenUrl", function (req: express.Request, res: express.Response) {
   shortenUrl(req, res);
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
 });
 
 if (!module.parent) {
