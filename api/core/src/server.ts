@@ -1,11 +1,10 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import shortenUrl from "./shortenUrl";
-import cors from "cors";
 
 var app = express();
 app.use(express.json());
-app.use(cors());
-app.post("/shortenUrl", function (req: express.Request, res: express.Response) {
+
+app.post("/shortenUrl", function (req: Request, res: Response) {
   shortenUrl(req, res);
 });
 
