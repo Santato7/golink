@@ -3,7 +3,6 @@ const form = document.getElementById("urlForm") as HTMLFormElement;
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const { value } = form.url;
-  console.log(value + " front end");
 
   shortenUrl(value);
 });
