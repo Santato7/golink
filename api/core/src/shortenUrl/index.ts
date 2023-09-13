@@ -1,8 +1,10 @@
 import express from "express";
 
+let userUrl: string;
+
 const shortenUrl = (req: express.Request, res: express.Response): any => {
-  console.log(req.body.url + " back end");
-  res.send(req.body.url);
+  userUrl = req.body.userUrl;
+  res.send(req.body.userUrl);
 };
 
 export default shortenUrl;

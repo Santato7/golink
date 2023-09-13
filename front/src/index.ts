@@ -1,21 +1,20 @@
-const form = document.getElementById("urlForm") as HTMLFormElement;
+const urlForm = document.getElementById("urlForm") as HTMLFormElement;
 
-form.addEventListener("submit", (event) => {
+urlForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const { value } = form.url;
-
+  const { value } = urlForm.url;
   shortenUrl(value);
 });
 
-async function shortenUrl(_url: string) {
+async function shortenUrl(_userUrl: string) {
   fetch("/api/shortenUrl", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ url: _url }),
+    body: JSON.stringify({ userUrl: _userUrl }),
   })
-    .then((response) => {
+    .then((response: Response) => {
       if (!response.ok) {
         throw new Error("Erro na solicitação: " + response.status);
       }
