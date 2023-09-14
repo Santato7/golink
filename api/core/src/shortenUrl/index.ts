@@ -4,8 +4,8 @@ const shortenUrl = (req: express.Request, res: express.Response): any => {
   let userUrl: string;
   userUrl = req.body.userUrl;
 
-  userUrl = verifyUrl(userUrl);
-  res.send(req.body.userUrl);
+  // userUrl = verifyUrl(userUrl);
+  res.send(userUrl);
 };
 
 const verifyUrl = (_url: string) => {

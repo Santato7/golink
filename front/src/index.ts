@@ -2,7 +2,7 @@ const urlForm = document.getElementById("urlForm") as HTMLFormElement;
 
 urlForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const { value } = urlForm.url;
+  const value = verifyUrl(urlForm.url.value);
   shortenUrl(value);
 });
 
@@ -30,3 +30,11 @@ async function shortenUrl(_userUrl: string) {
       console.error("Erro na solicitação Fetch:", error);
     });
 }
+
+const verifyUrl = (_url: string) => {
+  if (!/^(https?:\/\/)/i.test(_url)) {
+    _url = `https://${_url}`;
+  }
+
+  return _url;
+};
