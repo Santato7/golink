@@ -32,7 +32,6 @@ const verifyUrl = (_url: string) => {
   if (!/^(https?:\/\/)/i.test(_url)) {
     _url = `https://${_url}`;
   }
-
   return _url;
 };
 
