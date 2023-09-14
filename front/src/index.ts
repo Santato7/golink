@@ -2,7 +2,7 @@ const urlForm = document.getElementById("urlForm") as HTMLFormElement;
 
 urlForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const userUrl = verifyUrl(urlForm.userUrl.value);
+  let userUrl = verifyUrl(urlForm.userUrl.value);
   shortenUrl(userUrl);
 });
 
