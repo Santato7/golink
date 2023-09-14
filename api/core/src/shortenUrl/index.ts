@@ -1,13 +1,17 @@
 import express from "express";
 import getConnection from "../db";
 
-const shortenUrl = (req: express.Request, res: express.Response) => {
-  let userUrl: string = verifyUrl(req.body.userUrl);
-  let shortUrl = process.env.DOMAIN + urlHash();
-
-  insertUrl(userUrl, shortUrl);
-
-  res.send(shortUrl);
+const shortenUrl = async (req: express.Request, res: express.Response) => {
+  try {
+    let userUrl: string = verifyUrl(req.body.userUrl);
+    let shortUrl = process.env.DOMAIN + urlHash();
+  
+    await insertUrl(userUrl, shortUrl);
+    
+    return shortUrl;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const urlHash = () => {
