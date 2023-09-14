@@ -2,12 +2,12 @@ const urlForm = document.getElementById("urlForm") as HTMLFormElement;
 
 urlForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const value = verifyUrl(urlForm.url.value);
-  shortenUrl(value);
+  const userUrl = verifyUrl(urlForm.url.value);
+  shortenUrl(userUrl);
 });
 
 async function shortenUrl(_userUrl: string) {
-  fetch("/api/shortenUrl", {
+  fetch("/api/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
