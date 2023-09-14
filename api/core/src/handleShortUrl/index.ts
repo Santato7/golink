@@ -11,8 +11,11 @@ const handleShortUrl = async (req: express.Request, res: express.Response) => {
     [shortUrl]
   );
 
-  res.send(rows);
-  console.log(rows);
+  if (rows.length === 0) {
+    return res.sendStatus(404);
+  }
+
+  res.redirect(rows[0].URL);
 };
 
 export default handleShortUrl;
