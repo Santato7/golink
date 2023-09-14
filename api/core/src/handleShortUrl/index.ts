@@ -11,6 +11,7 @@ const handleShortUrl = async (req: express.Request, res: express.Response) => {
     [shortUrl]
   );
 
+  res.send(rows);
   console.log(rows);
 };
 
