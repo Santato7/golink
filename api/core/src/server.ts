@@ -14,17 +14,15 @@ app.get("/:hash", async (req: express.Request, res: express.Response) => {
     console.error(error);
   }
 });
-app.get("/", async (req: Request, res: Response) => {
+
+app.post("/", async (req: Request, res: Response) => {
   try {
     let response = await shortenUrl(req, res);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
+    res.status(500).json("error");
   }
-});
-
-app.post("/", (req: Request, res: Response) => {
-  shortenUrl(req, res);
 });
 
 if (!module.parent) {

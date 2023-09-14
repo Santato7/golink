@@ -5,7 +5,6 @@ const shortenUrl = async (req: express.Request, res: express.Response) => {
   try {
     let userUrl: string = verifyUrl(req.body.userUrl);
     let shortUrl = process.env.DOMAIN + urlHash();
-  
     await insertUrl(userUrl, shortUrl);
     
     return shortUrl;
@@ -25,11 +24,15 @@ const urlHash = () => {
 };
 
 const insertUrl = async (_userUrl: string, _shortUrl: string) => {
-  const conn = await getConnection();
-  await conn.execute("INSERT INTO URL (SHORT_URL, URL) VALUES (?, ?)", [
-    _shortUrl,
-    _userUrl,
-  ]);
+  try {
+    const conn = await getConnection();
+    await conn.execute("INSERT INTO URL (SHORT_URL, URL) VALUES (?, ?)", [
+      _shortUrl,
+      _userUrl,
+    ]);
+  } catch (error) {
+    throw error;
+  }
 };
 
 const verifyUrl = (_url: string) => {
