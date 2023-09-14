@@ -18,15 +18,12 @@ async function shortenUrl(_userUrl: string) {
       if (!response.ok) {
         throw new Error("Erro na solicitação: " + response.status);
       }
-      // Não analise a resposta como JSON aqui
-      // return response.json();
+      return response.json();
     })
-    .then(() => {
-      // Manipule o sucesso aqui, pois a resposta não é um JSON
-      console.log("Solicitação bem-sucedida");
+    .then((data) => {
+      console.log(data);
     })
     .catch((error) => {
-      // Manipule erros aqui
       console.error("Erro na solicitação Fetch:", error);
     });
 }
