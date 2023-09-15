@@ -8,8 +8,9 @@ app.use(express.json());
 app.get("/:hash", async (req: express.Request, res: express.Response) => {
   try {
     let url = await handleShortUrl(req, res);
-    res.set('Content-Type', 'text/html');
-    res.send(Buffer.from("<script>location.href='" + url + "'</script>"));
+    res.set("Content-Type", "text/html");
+    res.redirect(url);
+    // res.send(Buffer.from("<script>location.href='" + url + "'</script>"));
   } catch (error) {
     console.error(error);
     res.status(500).json("Not Found");
