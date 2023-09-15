@@ -6,9 +6,6 @@ urlForm.addEventListener("submit", (event) => {
   shortenUrl(userUrl);
 });
 
-const redirect = (url:string, asLink = true) =>
-  asLink ? (window.location.href = url) : window.location.replace(url);
-
 async function shortenUrl(_userUrl: string) {
   fetch("/api/", {
     method: "POST",
@@ -24,7 +21,7 @@ async function shortenUrl(_userUrl: string) {
       return response.json();
     })
     .then((data) => {
-      redirect(data);
+      console.log(data);
     })
     .catch((error) => {
       console.error("Erro na solicitação Fetch:", error);
