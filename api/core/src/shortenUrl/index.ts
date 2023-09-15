@@ -4,7 +4,7 @@ import getConnection from "../db";
 const shortenUrl = async (req: express.Request, res: express.Response) => {
   try {
     let userUrl: string = verifyUrl(req.body.userUrl);
-    let shortUrl = process.env.DOMAIN + urlHash();
+    let shortUrl = urlHash();
     await insertUrl(userUrl, shortUrl);
     
     return shortUrl;
