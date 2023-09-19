@@ -15,7 +15,7 @@ app.get("/:hash", async (req: express.Request, res: express.Response) => {
   }
 });
 
-app.post("/", async (req: Request, res: Response) => {
+app.post("/new-shorten-url", async (req: Request, res: Response) => {
   try {
     let response = await shortenUrl(req, res);
     res.status(200).json(response);

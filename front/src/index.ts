@@ -7,7 +7,7 @@ urlForm.addEventListener("submit", (event) => {
 });
 
 async function shortenUrl(_userUrl: string) {
-  fetch("/api/", {
+  fetch("/api/new-shorten-url", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
